@@ -1,3 +1,3 @@
 # PythonToy
 --------------
-python toy 
+python toy 1
