@@ -1,0 +1,29 @@
+#-- coding : utf-8
+
+# -*- coding: utf-8 -*-
+# 本例中，就将纯黑色#000设为了透明色，因而图片中所有纯黑色的地方均会被优化为透明。
+'''
+#st=>start: 开始
+#e=>end: 结束
+#io=>inputoutput: 输入需要转化的文字
+#op1=>operation: 将文字转化为矢量图形
+#op2=>operation: 将矢量图形绘制到创建好的图片背景上
+#op3=>operation: 将绘制完的图形保存为GIF
+#st->op1->op2->op3->e
+#
+'''
+
+import os, sys, locale
+from PIL import Image, ImageFont, ImageDraw
+
+zihao = 100
+img = Image.open('1.gif')
+transparency = img.info['transparency']
+# text = input("Input String :".encode('utf-8')).decode(sys.stdin.encoding or locale.getpreferredencoding(True))
+text = "1123444等等"
+im = Image.new("RGBA", (zihao * len(text), zihao + 30), (0, 0, 0))
+dr = ImageDraw.Draw(im)
+font = ImageFont.truetype(os.path.join("fonts", "C:/Windows/Fonts/STZHONGS.TTF"), zihao)
+dr.text((1, 1), text, font=font, fill="#111")
+im.save(text + ".gif", transparency=transparency)
+input(u'close')
