@@ -1,5 +1,6 @@
 import requests
 import re
+import sys
 
 from Utils import SendMsg
 from bs4 import BeautifulSoup
@@ -16,9 +17,21 @@ ret = soup.find(id="priceblock_ourprice")
 
 s = str(ret)
 
-price = int(re.sub("[^0-9]", "", s))
+try:
+	price = int(re.sub("[^0-9]", "", s))
+	
+	if price < 40000 :
+		nowPrice = "现在价格："
+		nowPrice += str(price)
+		SendMsg(nowPrice,nowPrice)
+	else:
+		print("价格过高：" , price)
+		
+except ValueError:
+	SendMsg("解析出错","ValueError")
+except:
+	print("Unexpected error:", sys.exc_info()[0])
+	raise
+	
 
-if price < 40000 :
-	nowPrice = "现在价格："
-	nowPrice += str(price)
-	SendMsg(nowPrice,nowPrice)
+	
