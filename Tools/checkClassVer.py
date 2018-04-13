@@ -10,6 +10,7 @@ import os
 
 root_dir = ".\\"
 tmp_dir = "E:\\java_check_temp\\"
+javap = ""
 
 number = 0
 def unzipfile(filename):
@@ -19,7 +20,7 @@ def unzipfile(filename):
         tmp_now = tmp_dir + str(number)
         number = number + 1
         zip_ref.extractall(tmp_now)
-        
+        gothrough(tmp_now, lambda : )
 
 def gothrough(rootdir, dealfunc):
     for parent,dirnames,filenames in os.walk(rootdir):
